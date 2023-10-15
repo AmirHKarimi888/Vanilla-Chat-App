@@ -70,9 +70,9 @@ export const Body = `
             </ul>
         </div>
 
-        <div class="border border-gray-500 lg:w-3/4 md:w-full sm:w-full h-screen max-sm:w-full max-sm:hidden sm:hidden md:hidden lg:block overflow-y-scroll">
+        <div class="border border-gray-500 lg:w-3/4 md:w-full sm:w-full h-screen max-sm:w-full max-sm:hidden sm:hidden md:hidden lg:block overflow-y-scroll bg-cover bg-scroll bg-bottom bg-no-repeat shadow-lg"  style="background-image:url('https://wallpapershome.com/images/pages/pic_h/24806.jpg');">
             <div class="w-full aspect-auto grid justify-center items-center mt-[270px]">
-                <p class="p-2 rounded-full bg-gray-200 text-sm">Select A Chat To Start Messageing</p>
+                <p class="p-2 rounded-full bg-cyan-300 text-sm">Select A Chat To Start Messageing</p>
             </div>
         </div>
     </div>
