@@ -116,7 +116,6 @@ export const MainChat =
         <li class="rounded-xl p-5 bg-white break-all my-5 ml-[40%]">
             <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalativeaaaa</p>
         </li>
-        <button id="a">aa</button>
     </ul>
 </div>
 </div>

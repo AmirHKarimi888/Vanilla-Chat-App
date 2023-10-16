@@ -220,3 +220,20 @@
         </div>
     </div>
 </main>
+
+
+<div class="backdrop hidden fixed top-0 left-0 w-full h-screen backdrop-blur-md">
+    <div id="sidebar" class="fixed top-0 left-0 w-[300px] h-screen bg-gray-200 border-r border-gray-400">
+        <div class="border-b border-gray-400">
+            <img src="${loggedInUser?.avatar}" alt=""
+                class="mx-auto text-center w-[50px] aspect-square rounded-full mt-5">
+            <p class="text-center my-2">${loggedInUser?.username}</p>
+            <p class="text-center my-2 text-sm">${loggedInUser?.email}</p>
+        </div>
+        <ul class="w-full">
+            <li class="p-3 text-center border-b border-t border-gray-400">
+                Log Out <i class="fa fa-logout"></i>
+            </li>
+        </ul>
+    </div>
+</div>

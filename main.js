@@ -10,6 +10,41 @@ const app = document.querySelector("#app");
 app.insertAdjacentHTML("afterbegin", Header);
 app.insertAdjacentHTML("afterbegin", Body);
 
+const toggleBackdrop = () => {
+  const backdrop = document.querySelector(".backdrop");
+  
+  if(backdrop.classList.contains("hidden")) {
+    backdrop.classList.remove("hidden");
+  } else {
+    backdrop.classList.add("hidden");
+  }
+}
+
+document.querySelector("#sidebarToggleBtn").addEventListener("click", toggleBackdrop);
+document.querySelector("#sidebar").addEventListener("click", (event) => event.stopPropagation());
+document.querySelector(".backdrop").addEventListener("click", toggleBackdrop);
+
+document.querySelector("#logout").addEventListener("click", () => {
+  localStorage.setItem("loggedInUser", "");
+  setTimeout(() => window.location.href = "", 1000);
+})
+
+const toggleSignupLogin = () => {
+  const Signup = document.querySelector(".signup");
+  const Login = document.querySelector(".login");
+
+  if(Signup.classList.contains("hidden")) {
+    Signup.classList.remove("hidden");
+    Login.classList.add("hidden");
+  } else if(Login.classList.contains("hidden")) {
+    Signup.classList.add("hidden");
+    Login.classList.remove("hidden");
+  }
+}
+
+document.querySelector("#toggleSignup").addEventListener("click", toggleSignupLogin);
+document.querySelector("#toggleLogin").addEventListener("click", toggleSignupLogin);
+
 const initUsersRes = await fetch(uri + "/users");
 let usersData = await initUsersRes.json();
 
@@ -97,10 +132,44 @@ document.querySelector("#signup").addEventListener("submit", async (event) => {
           setTimeout(() => window.location.href = "/", 1000);
         })
         .catch((err) => console.log(err.message))
+    } else {
+      console.log("Password is too short or password and repeat don't match.")
     }
   } else {
-    console.log(false);
+    console.log("User already exists!");
   }
 
+})
+
+
+
+
+let loginEmailEl = document.querySelector("#loginEmail");
+let loginPasswordEl = document.querySelector("#loginPassword");
+
+let loginEmail = "";
+let loginPassword = "";
+
+loginEmailEl.addEventListener("change", (event) => {
+  loginEmail = event.target.value;
+})
+loginPasswordEl.addEventListener("change", (event) => {
+  loginPassword = event.target.value;
+})
+
+document.querySelector("#login").addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  let foundUser = users.filter((user) => {
+    if (user.email == loginEmail && user.password == loginPassword) {
+      return user;
+    } else {
+      null;
+    }
+  })
+
+  localStorage.setItem("loggedInUser", foundUser[0].uid);
+  console.log("Login Successfully Done");
+  setTimeout(() => window.location.href = "", 1000);
 })
 

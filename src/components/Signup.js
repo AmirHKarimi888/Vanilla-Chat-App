@@ -1,8 +1,8 @@
 export const Signup = 
 `
-<div class="w-[300px] mx-auto">
-<br/><br/><br/><br/><br/>
-<form id="signup" class="rounded-lg border border-gray-400 p-5">
+<div class="signup w-[300px] mx-auto">
+<br/><br/><br/>
+<form id="signup" class="mt-2 rounded-lg border border-gray-400 p-5">
     <div class="mb-6">
        <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your username</label>
     <input type="text" id="signupUsername"
@@ -50,6 +50,10 @@ export const Signup =
     <button type="submit"
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register
         new account</button>
+
+    <div class="mb-6">
+        <label class="block mt-2 text-sm font-medium text-gray-900 dark:text-white">Do you already have an account? <p id="toggleLogin" class="text-blue-500 cursor-pointer">Login</p></label>
+    </div>
 </form>
 <br/><br/><br/><br/><br/>
 </div>
