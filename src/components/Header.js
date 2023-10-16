@@ -11,8 +11,6 @@ let loggedInUser = users.filter((user) => {
 
 loggedInUser = loggedInUser[0];
 
-console.log(loggedInUser);
-
 export const Header = `
 <header>
     <nav class="fixed top-0 left-0 w-full bg-blue-500 text-white p-3 border-b border-gray-400 grid grid-cols-2 justify-center items-center shadow-md shadow-gray-300">

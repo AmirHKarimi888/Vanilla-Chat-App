@@ -10,6 +10,8 @@ const app = document.querySelector("#app");
 app.insertAdjacentHTML("afterbegin", Header);
 app.insertAdjacentHTML("afterbegin", Body);
 
+
+//Sidebar backdrop toggle
 const toggleBackdrop = () => {
   const backdrop = document.querySelector(".backdrop");
   
@@ -20,15 +22,20 @@ const toggleBackdrop = () => {
   }
 }
 
+
+//Log Out Function
 document.querySelector("#sidebarToggleBtn").addEventListener("click", toggleBackdrop);
 document.querySelector("#sidebar").addEventListener("click", (event) => event.stopPropagation());
 document.querySelector(".backdrop").addEventListener("click", toggleBackdrop);
 
 document.querySelector("#logout").addEventListener("click", () => {
   localStorage.setItem("loggedInUser", "");
+  console.log("Logout Successfully Done");
   setTimeout(() => window.location.href = "", 1000);
 })
 
+
+//Toggle between Signup page and Login page
 const toggleSignupLogin = () => {
   const Signup = document.querySelector(".signup");
   const Login = document.querySelector(".login");
@@ -45,13 +52,20 @@ const toggleSignupLogin = () => {
 document.querySelector("#toggleSignup").addEventListener("click", toggleSignupLogin);
 document.querySelector("#toggleLogin").addEventListener("click", toggleSignupLogin);
 
+
+
+//Fetch users
 const initUsersRes = await fetch(uri + "/users");
 let usersData = await initUsersRes.json();
 
 let users = usersData;
 
+//File picker initialization
 const client = filestack.init("AWOK4L9h4SROT147VanQQz");
 
+
+
+//Signup system
 let signupUsernameEl = document.querySelector("#signupUsername");
 let signupEmailEl = document.querySelector("#signupEmail");
 let signupPasswordEl = document.querySelector("#signupPassword");
@@ -144,6 +158,7 @@ document.querySelector("#signup").addEventListener("submit", async (event) => {
 
 
 
+//Login system
 let loginEmailEl = document.querySelector("#loginEmail");
 let loginPasswordEl = document.querySelector("#loginPassword");
 
