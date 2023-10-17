@@ -2,8 +2,8 @@ import { loggedInUser } from "./Header";
 
 export const MainChat = 
 `
-<div class="mx-auto w-full mt-[75px] grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1">
-    <div class="chatList h-screen max-sm:w-full overflow-y-scroll">
+<div class="mx-auto w-full grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1">
+    <div class="chatList mt-[75px] h-screen max-sm:w-full overflow-y-scroll">
         <ul id="chatList" class="w-full mx-auto grid grid-cols-1">
             <li
                 class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
@@ -116,7 +116,7 @@ export const MainChat =
 
     <ul id="chat" class="p-3 mx-auto mt-[-270px] lg:w-[80%] md:w-[85%] sm:w-[90%] hidden">
         <nav
-            class="fixed top-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300">
+            class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none">
             <button id="backToContactsListBtn"
                 class="w-[50px] aspect-square text-xl rounded-full focus:border sm:hidden md:hidden lg:hidden">
                 <i class="fa fa-arrow-left"></i>
