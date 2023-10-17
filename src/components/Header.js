@@ -28,7 +28,7 @@ export const Header = `
         <p class='text-xl text-right mr-3'>AmirHK888</p>
     </nav>
 
-    <div class="backdrop hidden fixed top-0 left-0 w-full h-screen backdrop-blur-md">
+    <div class="backdrop hidden fixed top-0 left-0 z-50 w-full h-screen backdrop-blur-md">
     <div id="sidebar" class="fixed top-0 left-0 w-[300px] h-screen bg-gray-200 border-r border-gray-400">
         <div class="border-b border-gray-400">
             <img src="${loggedInUser?.avatar}" alt=""

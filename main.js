@@ -353,3 +353,5 @@ document.querySelector("#login").addEventListener("submit", (event) => {
   setTimeout(() => window.location.href = "", 1000);
 })
 
+
+export { secondPerson }

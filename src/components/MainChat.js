@@ -1,3 +1,5 @@
+import { loggedInUser } from "./Header";
+
 export const MainChat = 
 `
 <div class="mx-auto w-full mt-[75px] grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1">
@@ -110,11 +112,32 @@ export const MainChat =
     </div>
 
     <ul id="chat" class="p-3 mx-auto mt-[-270px] lg:w-[80%] md:w-[85%] sm:w-[90%]">
-        <li class="rounded-xl p-5 bg-cyan-500 break-all my-5 mr-[40%]">
+    <nav class="fixed top-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300">
+    <button id="chatProfile" class="w-[50px] aspect-square text-xl">
+    <img src="${loggedInUser?.avatar}" alt=""
+    class="text-center w-[50px] h-[50px] mr-5 rounded-full">
+    </button>
+    <div class="flex grid-cols-1">
+    
+ </button>
+
+ </div>
+    <p class='text-xl text-right ml-3'>${loggedInUser?.username}</p>
+</nav>
+<br/><br/><br/>
+        <li class="mr-[40%] flex grid-cols-2 justify-center items-center">
+        <img src="${loggedInUser?.avatar}" alt=""
+        class="text-center w-[50px] h-[50px] mr-5 rounded-full">
+            <div class="rounded-xl p-5 bg-cyan-500 break-all my-5 ">
             <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaahjgjbjbjbjbjbjjjjbjbjbjjbjaaaaaaaaaaaaaaaaaa</p>
+            </div>
         </li>
-        <li class="rounded-xl p-5 bg-white break-all my-5 ml-[40%]">
+        <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
+            <div class="rounded-xl p-5 bg-white break-all my-5 ">
             <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalativeaaaa</p>
+            </div>
+            <img src="${loggedInUser?.avatar}" alt=""
+            class="text-center w-[50px] h-[50px] ml-5 rounded-full">
         </li>
     </ul>
 </div>
