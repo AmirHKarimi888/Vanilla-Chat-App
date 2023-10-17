@@ -9,6 +9,8 @@ if(localStorage.getItem("loggedInUser") != "") {
   document.querySelector("body").classList.remove("overflow-y-hidden");
 }
 
+let secondPerson = {};
+
 const app = document.querySelector("#app");
 
 app.insertAdjacentHTML("afterbegin", `
@@ -57,16 +59,20 @@ let usersData = await initUsersRes.json();
 
 let users = usersData;
 
+//Fetch chats
+const initChatsRes = await fetch(uri + "/chats");
+let chatsData = await initChatsRes.json();
 
+let chats = chatsData;
 
 //Default user list filled by contacts
 const contactListItems = `
 ${
-  loggedInUser.contacts.map((user) => {
+  loggedInUser?.contacts.map((user) => {
     return(
       `
-      <li
-      class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
+      <li id="${user?.email}"
+      class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
       <img src="${user?.avatar}"
           alt="" class="ml-4 w-[50px] aspect-square rounded-full">
       <p class='text-xl max-sm:ml-[-30%]'>${user?.username}</p>
@@ -77,8 +83,10 @@ ${
 }
 `
 
-document.querySelector("#chatList").innerHTML = "";
-document.querySelector("#chatList").insertAdjacentHTML("afterbegin",contactListItems);
+if(document.querySelector("#chatList")) {
+  document.querySelector("#chatList").innerHTML = "";
+  document.querySelector("#chatList").insertAdjacentHTML("afterbegin",contactListItems);
+}
 
 
 
@@ -96,7 +104,7 @@ searchInputEl.addEventListener("change", (event) => {
   }
 })
 
-const searchUser = () => {
+const searchUser = async() => {
   let foundUsers = users.filter((user) => {
     if(searchInput === "") {
       return null;
@@ -121,8 +129,8 @@ const searchUser = () => {
     foundUsers.map((user) => {
       return(
         `
-        <li
-        class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
+        <li id="${user?.email}"
+        class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
         <img src="${user?.avatar}"
             alt="" class="ml-4 w-[50px] aspect-square rounded-full">
         <p class='text-xl max-sm:ml-[-30%]'>${user?.username}</p>
@@ -135,6 +143,60 @@ const searchUser = () => {
 
   document.querySelector("#chatList").innerHTML = "";
   document.querySelector("#chatList").insertAdjacentHTML("afterbegin",searchListItems);
+
+  //Create a chat and add that user to your and yourself to his/her contacts
+  let res = await fetch(uri + "/chats");
+  chats = await res.json();
+
+  document.querySelectorAll(".userItem").forEach((el) => {
+    el.addEventListener("click", async (event) => {
+      secondPerson = users.filter((user) => {
+        if(user.email == event.currentTarget.id) {
+          return user;
+        }
+      })
+
+      secondPerson = secondPerson[0];
+
+      let newChat = {
+        uid: loggedInUser.uid + secondPerson.uid,
+        email: loggedInUser.email + "-" + secondPerson.email,
+        name: loggedInUser.username + "-" + secondPerson.username,
+        chats: []
+      }
+
+      let foundChat = chats.filter((chat) => {
+        if(chat?.uid == loggedInUser.uid + secondPerson.uid) {
+          return chat;
+        }
+      })
+
+      if(foundChat[0]?.uid != loggedInUser.uid + secondPerson.uid) {
+        
+        await fetch(uri + "/chats", {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: "follow", // manual, *follow, error
+          referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify(newChat), // body data type must match "Content-Type" header
+        })
+          .then(() => {
+            console.log("Success");
+          })
+          .catch((err) => console.log(err.message))
+
+      } else {
+        console.log("Chat already exists");
+      }
+
+    })
+  });
 }
 
 document.querySelector("#searchBtn").addEventListener("click", searchUser);
@@ -143,9 +205,6 @@ searchInputEl.addEventListener("keyup", (event) => {
     searchUser();
   }
 })
-
-
-
 
 
 //Toggle between Signup page and Login page
