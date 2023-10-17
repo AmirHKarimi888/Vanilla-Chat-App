@@ -1,7 +1,6 @@
 export const Login =
 `
-<div class="login hidden w-[300px] mx-auto">
-<br/><br/>
+<div class="login hidden w-[330px] mx-auto">
 <form id="login" class="my-[200px] rounded-lg border border-gray-400 p-5">
     <div class="mb-6">
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
@@ -25,6 +24,5 @@ export const Login =
         <label class="block mt-2 text-sm font-medium text-gray-900 dark:text-white">Havn't you got any accounts? <p id="toggleSignup" class="text-blue-500 cursor-pointer">Register</p></label>
     </div>
 </form>
-<br/><br/><br/><br/><br/><br/><br/>
 </div>
 `

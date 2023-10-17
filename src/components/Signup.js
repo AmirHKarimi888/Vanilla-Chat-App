@@ -1,8 +1,7 @@
 export const Signup = 
 `
-<div class="signup w-[300px] mx-auto">
-<br/><br/><br/>
-<form id="signup" class="mt-2 rounded-lg border border-gray-400 p-5">
+<div class="signup w-[330px] mx-auto">
+<form id="signup" class="my-[200px] rounded-lg border border-gray-400 p-5">
     <div class="mb-6">
        <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your username</label>
     <input type="text" id="signupUsername"
@@ -55,6 +54,5 @@ export const Signup =
         <label class="block mt-2 text-sm font-medium text-gray-900 dark:text-white">Do you already have an account? <p id="toggleLogin" class="text-blue-500 cursor-pointer">Login</p></label>
     </div>
 </form>
-<br/><br/><br/><br/><br/>
 </div>
 `
