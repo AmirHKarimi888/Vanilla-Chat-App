@@ -127,7 +127,7 @@ export const MainChat =
             <p class="text-xl text-right ml-3">${loggedInUser?.username}</p>
         </nav>
 
-        <ul class="mt-[350px] lg:mb-[140px] md:mb-[140px] sm:mb-[140px] max-sm:mb-[180px]">
+        <ul class="innerChat mt-[350px] lg:mb-[140px] md:mb-[140px] sm:mb-[140px] max-sm:mb-[180px]">
             <li class="mr-[40%] flex grid-cols-2 justify-center items-center">
                 <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
                 <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
