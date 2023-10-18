@@ -110,6 +110,7 @@ if (document.querySelector("#chatList")) {
 document.querySelectorAll(".userItem").forEach((el) => {
   el.addEventListener("click", async (event) => {
 
+
     secondPerson = users.filter((user) => {
       if (user.email == event.currentTarget.id) {
         return user;
@@ -125,11 +126,102 @@ document.querySelectorAll(".userItem").forEach((el) => {
       chats: []
     }
 
+    let res = await fetch(uri + "/chats");
+    chatsData = await res.json();
+
+    chats = chatsData;
+
     let foundChat = chats.filter((chat) => {
       if (chat?.uid == loggedInUser.uid + secondPerson.uid) {
         return chat;
       }
     })
+
+
+
+    if (foundChat[0]?.uid != loggedInUser.uid + secondPerson.uid) {
+      //Creating Chat 
+      await fetch(uri + "/chats", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(newChat), // body data type must match "Content-Type" header
+      })
+        .then(() => {
+          console.log("Success");
+        })
+        .catch((err) => console.log(err.message))
+    } else {
+
+
+      let chatMessages = `
+      <nav
+      class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none">
+      <button id="backToContactsListBtn"
+          class="w-[50px] aspect-square text-xl rounded-full focus:border sm:hidden md:hidden lg:hidden">
+          <i class="fa fa-arrow-left"></i>
+      </button>
+      <button id="chatProfile" class="w-[50px] aspect-square text-xl ml-2">
+          <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
+      </button>
+      <p class="text-xl text-right ml-3">${secondPerson?.username}</p>
+  </nav>
+
+  <ul class="mt-[350px] lg:mb-[140px] md:mb-[140px] sm:mb-[140px] max-sm:mb-[180px]">
+      ${
+        foundChat[0].chats?.map((chat) => {
+          return(
+            `
+             ${
+                chat?.author == loggedInUser?.email ? 
+                `
+                <li class="mr-[40%] flex grid-cols-2 justify-center items-center">
+                <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
+                <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
+                    <p>
+                        ${chat?.content}
+                    </p>
+                </div>
+               </li>
+                ` :
+                `
+                <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
+                <div class="rounded-xl p-5 bg-white break-all my-2">
+                    <p>${chat?.content}</p>
+                </div>
+                <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
+            </li>
+                `
+             }
+            `
+          )
+        }).join("")
+      }
+    </ul>
+
+      <nav
+          class="fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 p-1 border-b border-gray-400 flex justify-center items-center shadow-md shadow-gray-300">
+          <div class="flex grid-cols-1 w-full justify-center">
+              <input type="text" id="messageInput"
+                  class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                  placeholder="Type your message" />
+              <button id="sendBtn" class="w-[50px] aspect-square text-xl">
+                  <i class="fa fa-send"></i>
+              </button>
+          </div>
+      </nav>
+      `
+
+      document.querySelector("#chat").innerHTML = "";
+      document.querySelector("#chat").insertAdjacentHTML("afterbegin", chatMessages);
+    }
 
     if (document.querySelector(".chat").classList.contains("max-sm:hidden")) {
       document.querySelector(".chat").classList.remove("max-sm:hidden");
@@ -152,26 +244,11 @@ document.querySelectorAll(".userItem").forEach((el) => {
       document.querySelector(".chatList").classList.remove("max-sm:hidden");
     })
 
-    if (foundChat[0]?.uid != loggedInUser.uid + secondPerson.uid) {
-      //Creating Chat 
-      await fetch(uri + "/chats", {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(newChat), // body data type must match "Content-Type" header
-      })
-        .then(() => {
-          console.log("Success");
-        })
-        .catch((err) => console.log(err.message))
-    }
+
+    
+    
+
+
 
 
 
@@ -208,7 +285,7 @@ document.querySelectorAll(".userItem").forEach((el) => {
                 uid: foundChat[0]?.uid + Math.floor(Math.random() * 1000000000),
                 created: today + " at " + formatAMPM(new Date()),
                 edited: "",
-                auther: loggedInUser?.email,
+                author: loggedInUser?.email,
                 content: messageInput
               }
             ]
@@ -241,6 +318,8 @@ document.querySelectorAll(".userItem").forEach((el) => {
 
   })
 });
+
+
 
 
 
@@ -374,7 +453,7 @@ searchInputEl.addEventListener("change", async (event) => {
                   uid: foundChat[0]?.uid + Math.floor(Math.random() * 1000000000),
                   created: today + " at " + formatAMPM(new Date()),
                   edited: "",
-                  auther: loggedInUser?.email,
+                  author: loggedInUser?.email,
                   content: messageInput
                 }
               ]
@@ -525,7 +604,7 @@ const searchUser = async () => {
                     uid: foundChat[0]?.uid + Math.floor(Math.random() * 1000000000),
                     created: today + " at " + formatAMPM(new Date()),
                     edited: "",
-                    auther: loggedInUser?.email,
+                    author: loggedInUser?.email,
                     content: messageInput
                   }
                 ]
@@ -741,7 +820,7 @@ const searchUser = async () => {
                     uid: foundChat[0]?.uid + Math.floor(Math.random() * 1000000000),
                     created: today + " at " + formatAMPM(new Date()),
                     edited: "",
-                    auther: loggedInUser?.email,
+                    author: loggedInUser?.email,
                     content: messageInput
                   }
                 ]
