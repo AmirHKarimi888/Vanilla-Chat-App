@@ -1,9 +1,9 @@
 import './src/css/style.css'
-import { Header, loggedInUser } from './src/components/Header';
+import { Header } from './src/components/Header';
 import { Body } from './src/components/Body';
 import { uri } from './api';
 
-if(localStorage.getItem("loggedInUser") != "") {
+if (localStorage.getItem("loggedInUser") != "") {
   document.querySelector("body").classList.add("overflow-y-hidden");
 } else {
   document.querySelector("body").classList.remove("overflow-y-hidden");
@@ -11,19 +11,25 @@ if(localStorage.getItem("loggedInUser") != "") {
 
 let secondPerson = {};
 
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, "0");
+var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+var yyyy = today.getFullYear();
+
+today = mm + "/" + dd + "/" + yyyy;
+
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? "pm" : "am";
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  var strTime = hours + ":" + minutes + " " + ampm;
+  return strTime;
+}
+
 const app = document.querySelector("#app");
-
-app.insertAdjacentHTML("afterbegin", `
-<div role="status" class="mx-auto text-center">
-    <svg aria-hidden="true" class="inline w-8 h-8 mt-[300px] mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-green-500" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-    </svg>
-    <span class="sr-only">Loading...</span>
-</div>
-`)
-
-app.innerHTML = "";
 
 app.insertAdjacentHTML("afterbegin", Body);
 app.insertAdjacentHTML("afterbegin", Header);
@@ -31,8 +37,8 @@ app.insertAdjacentHTML("afterbegin", Header);
 //Sidebar backdrop toggle
 const toggleBackdrop = () => {
   const backdrop = document.querySelector(".backdrop");
-  
-  if(backdrop.classList.contains("hidden")) {
+
+  if (backdrop.classList.contains("hidden")) {
     backdrop.classList.remove("hidden");
   } else {
     backdrop.classList.add("hidden");
@@ -59,121 +65,132 @@ let usersData = await initUsersRes.json();
 
 let users = usersData;
 
+let loggedInUser = users.filter((user) => {
+  if (user.uid == parseInt(localStorage.getItem("loggedInUser"))) {
+    return user;
+  }
+})
+
+loggedInUser = loggedInUser[0];
+
 //Fetch chats
 const initChatsRes = await fetch(uri + "/chats");
 let chatsData = await initChatsRes.json();
 
 let chats = chatsData;
 
-//Default user list filled by contacts
+
+
+
+
+//Default user list rendering
 const contactListItems = `
-${
-  loggedInUser?.contacts.map((user) => {
-    return(
-      `
-      <li id="${user?.email}"
-        class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-        <img src="${user?.avatar}" alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-        <p class='text-xl max-sm:ml-[-30%]'>${user?.username}</p>
-      </li>
-      `
-    )
-  }).join("")
-}
-`
-
-if(document.querySelector("#chatList")) {
-  document.querySelector("#chatList").innerHTML = "";
-  document.querySelector("#chatList").insertAdjacentHTML("afterbegin",contactListItems);
-}
-
-
-
-
-//Search system
-let searchInputEl = document.querySelector("#searchInput");
-
-let searchInput = "";
-
-searchInputEl.addEventListener("change", (event) => {
-  searchInput = event.target.value;
-  if(event.target.value == "") {
-    document.querySelector("#chatList").innerHTML = "";
-    document.querySelector("#chatList").insertAdjacentHTML("afterbegin",contactListItems);
-  }
-})
-
-const searchUser = async() => {
-  let foundUsers = users.filter((user) => {
-    if(searchInput === "") {
-      return null;
-    } else if(user.username.includes(searchInput) || user.username.includes(searchInput.toUpperCase()) || user.username.includes(searchInput.toLowerCase()) || user.email.includes(searchInput) || user.email.includes(searchInput.toUpperCase()) || user.email.includes(searchInput.toLowerCase())) {
-      return user;
-    }
-  })
-
-  document.querySelector("#chatList").innerHTML = "";
-  document.querySelector("#chatList").insertAdjacentHTML("afterbegin", `
-  <div role="status">
-    <svg aria-hidden="true" class="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-    </svg>
-    <span class="sr-only">Loading...</span>
-  </div>
-  `);
-
-  const searchListItems = `
-  ${
-    foundUsers.map((user) => {
-      return(
-        `
+${loggedInUser?.contacts.map((user) => {
+  return (
+    `
         <li id="${user?.email}"
           class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
           <img src="${user?.avatar}"
           alt="" class="ml-4 w-[50px] aspect-square rounded-full">
           <p class='text-xl max-sm:ml-[-30%]'>${user?.username}</p>
         </li>
-        `
-      )
-    }).join("")
+      `
+  )
+}).join("")
   }
-  `
+`
 
+if (document.querySelector("#chatList")) {
   document.querySelector("#chatList").innerHTML = "";
-  document.querySelector("#chatList").insertAdjacentHTML("afterbegin",searchListItems);
+  document.querySelector("#chatList").insertAdjacentHTML("afterbegin", contactListItems);
+}
 
-  //Create a chat and add that user to your and yourself to his/her contacts
-  let res = await fetch(uri + "/chats");
-  chats = await res.json();
 
-  document.querySelectorAll(".userItem").forEach((el) => {
-    el.addEventListener("click", async (event) => {
-      secondPerson = users.filter((user) => {
-        if(user.email == event.currentTarget.id) {
-          return user;
-        }
-      })
 
-      secondPerson = secondPerson[0];
+document.querySelectorAll(".userItem").forEach((el) => {
+  el.addEventListener("click", async (event) => {
 
-      let newChat = {
-        uid: loggedInUser.uid + secondPerson.uid,
-        email: loggedInUser.email + "-" + secondPerson.email,
-        name: loggedInUser.username + "-" + secondPerson.username,
-        chats: []
+    secondPerson = users.filter((user) => {
+      if (user.email == event.currentTarget.id) {
+        return user;
       }
+    })
 
-      let foundChat = chats.filter((chat) => {
-        if(chat?.uid == loggedInUser.uid + secondPerson.uid) {
-          return chat;
-        }
+    secondPerson = secondPerson[0];
+
+    let newChat = {
+      uid: loggedInUser.uid + secondPerson.uid,
+      email: loggedInUser.email + "-" + secondPerson.email,
+      name: loggedInUser.username + "-" + secondPerson.username,
+      chats: []
+    }
+
+    let foundChat = chats.filter((chat) => {
+      if (chat?.uid == loggedInUser.uid + secondPerson.uid) {
+        return chat;
+      }
+    })
+
+    if (document.querySelector(".chat").classList.contains("max-sm:hidden")) {
+      document.querySelector(".chat").classList.remove("max-sm:hidden");
+      document.querySelector(".chatList").classList.add("max-sm:hidden");
+    } else {
+      document.querySelector(".chat").classList.add("max-sm:hidden");
+      document.querySelector(".chatList").classList.remove("max-sm:hidden");
+    }
+
+    if (document.querySelector("#chat").classList.contains("hidden")) {
+      document.querySelector("#chat").classList.remove("hidden");
+      document.querySelector("#chatPreview").classList.add("hidden");
+    }
+
+    document.querySelector("#backToContactsListBtn").addEventListener("click", () => {
+      document.querySelector("#chat").classList.add("hidden");
+      document.querySelector("#chatPreview").classList.remove("hidden");
+
+      document.querySelector(".chat").classList.add("max-sm:hidden");
+      document.querySelector(".chatList").classList.remove("max-sm:hidden");
+    })
+
+    if (foundChat[0]?.uid != loggedInUser.uid + secondPerson.uid) {
+      //Creating Chat 
+      await fetch(uri + "/chats", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(newChat), // body data type must match "Content-Type" header
       })
+        .then(() => {
+          console.log("Success");
+        })
+        .catch((err) => console.log(err.message))
+    }
 
-      if(foundChat[0]?.uid != loggedInUser.uid + secondPerson.uid) {
-        
-        await fetch(uri + "/chats", {
-          method: "POST", // *GET, POST, PUT, DELETE, etc.
+
+
+    let messageInputEl = document.querySelector("#messageInput");
+    let sendBtnEl = document.querySelector("#sendBtn");
+
+    let messageInput = "";
+
+    messageInputEl.addEventListener("change", (event) => {
+      messageInput = event.target.value;
+    })
+
+    let postMessage = async () => {
+
+
+      if (messageInput != "") {
+
+        await fetch(uri + "/chats/" + foundChat[0]?.id, {
+          method: "PUT", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, *cors, same-origin
           cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
           credentials: "same-origin", // include, *same-origin, omit
@@ -183,38 +200,150 @@ const searchUser = async() => {
           },
           redirect: "follow", // manual, *follow, error
           referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-          body: JSON.stringify(newChat), // body data type must match "Content-Type" header
+          body: JSON.stringify({
+            ...foundChat[0],
+            chats: [
+              ...foundChat[0]?.chats,
+              {
+                uid: foundChat[0]?.uid + Math.floor(Math.random() * 1000000000),
+                created: today + " at " + formatAMPM(new Date()),
+                edited: "",
+                auther: loggedInUser?.email,
+                content: messageInput
+              }
+            ]
+          }), // body data type must match "Content-Type" header
         })
-          .then(() => {
-            console.log("Success");
-          })
-          .then(() => {
-            if(document.querySelector(".chat").classList.contains("max-sm:hidden")) {
-              document.querySelector(".chat").classList.remove("max-sm:hidden");
-              document.querySelector(".chatList").classList.add("max-sm:hidden");
-            } else {
-              document.querySelector(".chat").classList.add("max-sm:hidden");
-              document.querySelector(".chatList").classList.remove("max-sm:hidden");
-            }
+          .then(async () => {
+            let res = await fetch(uri + "/chats");
+            chats = await res.json();
 
-            if(document.querySelector("#chat").classList.contains("hidden")) {
-              document.querySelector("#chat").classList.remove("hidden");
-              document.querySelector("#chatPreview").classList.add("hidden");
-            }
-
-            document.querySelector("#backToContactsListBtn").addEventListener("click", () => {
-              document.querySelector("#chat").classList.add("hidden");
-              document.querySelector("#chatPreview").classList.remove("hidden");
-    
-              document.querySelector(".chat").classList.add("max-sm:hidden");
-              document.querySelector(".chatList").classList.remove("max-sm:hidden");
+            foundChat = chats.filter((chat) => {
+              if (chat?.uid == loggedInUser.uid + secondPerson.uid) {
+                return chat;
+              }
             })
           })
-          .catch((err) => console.log(err.message))
+          .then(() => {
+            messageInputEl.value = "";
+            messageInput = "";
+          })
+      }
+    }
 
-      } else {
-        console.log("Chat already exists");
-        if(document.querySelector(".chat").classList.contains("max-sm:hidden")) {
+    sendBtnEl.addEventListener("click", postMessage);
+
+    messageInputEl.addEventListener("keyup", (event) => {
+      if (event.key == "Enter") {
+        postMessage();
+      }
+    })
+
+  })
+});
+
+
+
+
+
+
+
+
+//Search system
+let searchInputEl = document.querySelector("#searchInput");
+
+let searchInput = "";
+
+searchInputEl.addEventListener("change", async (event) => {
+  searchInput = event.target.value;
+  if (event.target.value == "") {
+
+    let res = await fetch(uri + "/users");
+    users = await res.json();
+
+    loggedInUser = users.filter((user) => {
+      if (user.uid == parseInt(localStorage.getItem("loggedInUser"))) {
+        return user;
+      }
+    })[0]
+
+    document.querySelector("#chatList").innerHTML = "";
+    document.querySelector("#chatList").insertAdjacentHTML("afterbegin", contactListItems);
+  }
+})
+
+const searchUser = async () => {
+  if (searchInput == "") {
+    let res = await fetch(uri + "/users");
+    users = await res.json();
+
+    loggedInUser = users.filter((user) => {
+      if (user.uid == parseInt(localStorage.getItem("loggedInUser"))) {
+        return user;
+      }
+    })[0]
+
+    document.querySelector("#chatList").innerHTML = "";
+    document.querySelector("#chatList").insertAdjacentHTML("afterbegin", contactListItems);
+
+  } else if (searchInput != "") {
+    let foundUsers = users.filter((user) => {
+      if (searchInput === "") {
+        return null;
+      } else if (user.username.includes(searchInput) || user.username.includes(searchInput.toUpperCase()) || user.username.includes(searchInput.toLowerCase()) || user.email.includes(searchInput) || user.email.includes(searchInput.toUpperCase()) || user.email.includes(searchInput.toLowerCase())) {
+        return user;
+      }
+    })
+
+
+    const searchListItems = `
+    ${foundUsers.map((user) => {
+      return (
+        `
+          <li id="${user?.email}"
+            class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
+            <img src="${user?.avatar}"
+            alt="" class="ml-4 w-[50px] aspect-square rounded-full">
+            <p class='text-xl max-sm:ml-[-30%]'>${user?.username}</p>
+          </li>
+          `
+      )
+    }).join("")
+      }
+    `
+
+    document.querySelector("#chatList").innerHTML = "";
+    document.querySelector("#chatList").insertAdjacentHTML("afterbegin", searchListItems);
+
+    //Create a chat and add that user to your and yourself to his/her contacts
+    let res = await fetch(uri + "/chats");
+    chats = await res.json();
+
+    document.querySelectorAll(".userItem").forEach((el) => {
+      el.addEventListener("click", async (event) => {
+
+        secondPerson = users.filter((user) => {
+          if (user.email == event.currentTarget.id) {
+            return user;
+          }
+        })
+
+        secondPerson = secondPerson[0];
+
+        let newChat = {
+          uid: loggedInUser.uid + secondPerson.uid,
+          email: loggedInUser.email + "-" + secondPerson.email,
+          name: loggedInUser.username + "-" + secondPerson.username,
+          chats: []
+        }
+
+        let foundChat = chats.filter((chat) => {
+          if (chat?.uid == loggedInUser.uid + secondPerson.uid) {
+            return chat;
+          }
+        })
+
+        if (document.querySelector(".chat").classList.contains("max-sm:hidden")) {
           document.querySelector(".chat").classList.remove("max-sm:hidden");
           document.querySelector(".chatList").classList.add("max-sm:hidden");
         } else {
@@ -222,7 +351,7 @@ const searchUser = async() => {
           document.querySelector(".chatList").classList.remove("max-sm:hidden");
         }
 
-        if(document.querySelector("#chat").classList.contains("hidden")) {
+        if (document.querySelector("#chat").classList.contains("hidden")) {
           document.querySelector("#chat").classList.remove("hidden");
           document.querySelector("#chatPreview").classList.add("hidden");
         }
@@ -234,18 +363,143 @@ const searchUser = async() => {
           document.querySelector(".chat").classList.add("max-sm:hidden");
           document.querySelector(".chatList").classList.remove("max-sm:hidden");
         })
-      }
 
-    })
-  });
+        if (foundChat[0]?.uid != loggedInUser.uid + secondPerson.uid) {
+          //Creating Chat 
+          await fetch(uri + "/chats", {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            mode: "cors", // no-cors, *cors, same-origin
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+              "Content-Type": "application/json",
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: "follow", // manual, *follow, error
+            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify(newChat), // body data type must match "Content-Type" header
+          })
+            .then(() => {
+              console.log("Success");
+            })
+            .catch((err) => console.log(err.message))
+        }
+
+
+
+        let messageInputEl = document.querySelector("#messageInput");
+        let sendBtnEl = document.querySelector("#sendBtn");
+
+        let messageInput = "";
+
+        messageInputEl.addEventListener("change", (event) => {
+          messageInput = event.target.value;
+        })
+
+        let postMessage = async () => {
+
+          //Add To Contacts
+          let foundContact = loggedInUser?.contacts.filter((contact) => {
+            if (contact.email == secondPerson?.email) {
+              return contact;
+            }
+          })
+
+          if (messageInput != "") {
+
+            if (foundContact[0]?.email != secondPerson?.email) {
+              await fetch(uri + "/users/" + loggedInUser?.id, {
+                method: "PUT", // *GET, POST, PUT, DELETE, etc.
+                mode: "cors", // no-cors, *cors, same-origin
+                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: "same-origin", // include, *same-origin, omit
+                headers: {
+                  "Content-Type": "application/json",
+                  // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: "follow", // manual, *follow, error
+                referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify({
+                  ...loggedInUser,
+                  contacts: [
+                    ...loggedInUser?.contacts,
+                    {
+                      date: today + " at " + formatAMPM(new Date()),
+                      username: secondPerson?.username,
+                      email: secondPerson?.email,
+                      avatar: secondPerson?.avatar
+                    }
+                  ]
+                }), // body data type must match "Content-Type" header
+              })
+            }
+
+
+            await fetch(uri + "/chats/" + foundChat[0]?.id, {
+              method: "PUT", // *GET, POST, PUT, DELETE, etc.
+              mode: "cors", // no-cors, *cors, same-origin
+              cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+              credentials: "same-origin", // include, *same-origin, omit
+              headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              redirect: "follow", // manual, *follow, error
+              referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+              body: JSON.stringify({
+                ...foundChat[0],
+                chats: [
+                  ...foundChat[0]?.chats,
+                  {
+                    uid: foundChat[0]?.uid + Math.floor(Math.random() * 1000000000),
+                    created: today + " at " + formatAMPM(new Date()),
+                    edited: "",
+                    auther: loggedInUser?.email,
+                    content: messageInput
+                  }
+                ]
+              }), // body data type must match "Content-Type" header
+            })
+              .then(async () => {
+                let res = await fetch(uri + "/chats");
+                chats = await res.json();
+
+                foundChat = chats.filter((chat) => {
+                  if (chat?.uid == loggedInUser.uid + secondPerson.uid) {
+                    return chat;
+                  }
+                })
+              })
+              .then(() => {
+                messageInputEl.value = "";
+                messageInput = "";
+              })
+          }
+        }
+
+        sendBtnEl.addEventListener("click", postMessage);
+
+        messageInputEl.addEventListener("keyup", (event) => {
+          if (event.key == "Enter") {
+            postMessage();
+          }
+        })
+
+      })
+    });
+  }
 }
 
 document.querySelector("#searchBtn").addEventListener("click", searchUser);
 searchInputEl.addEventListener("keyup", (event) => {
-  if(event.key == "Enter") {
+  if (event.key == "Enter") {
     searchUser();
   }
 })
+
+
+
+
 
 
 //Toggle between Signup page and Login page
@@ -253,10 +507,10 @@ const toggleSignupLogin = () => {
   const Signup = document.querySelector(".signup");
   const Login = document.querySelector(".login");
 
-  if(Signup.classList.contains("hidden")) {
+  if (Signup.classList.contains("hidden")) {
     Signup.classList.remove("hidden");
     Login.classList.add("hidden");
-  } else if(Login.classList.contains("hidden")) {
+  } else if (Login.classList.contains("hidden")) {
     Signup.classList.add("hidden");
     Login.classList.remove("hidden");
   }
@@ -266,8 +520,12 @@ document.querySelector("#toggleSignup").addEventListener("click", toggleSignupLo
 document.querySelector("#toggleLogin").addEventListener("click", toggleSignupLogin);
 
 
+
+
 //File picker initialization
 const client = filestack.init("AWOK4L9h4SROT147VanQQz");
+
+
 
 
 
@@ -360,6 +618,7 @@ document.querySelector("#signup").addEventListener("submit", async (event) => {
   }
 
 })
+
 
 
 
