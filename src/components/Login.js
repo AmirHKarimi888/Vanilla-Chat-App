@@ -1,5 +1,13 @@
 export const Login =
 `
+<div class="fixed top-0 left-0 w-full">
+<nav class="bg-blue-500 mx-auto text-white p-6 border-b border-gray-400 flex grid-cols-2 justify-center items-center shadow-md shadow-gray-300">
+<div class="w-full">
+  <p class="text-white text-xl">Amirgram</p>
+</div>
+</nav>
+</div>
+
 <div class="login hidden w-[330px] mx-auto">
     <form id="login" class="my-[200px] rounded-lg border border-gray-400 p-5">
         <div class="mb-6">
