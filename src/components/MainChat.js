@@ -5,102 +5,88 @@ export const MainChat =
 <div class="mx-auto w-full grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1">
     <div class="chatList mt-[75px] h-screen max-sm:w-full overflow-y-scroll">
         <ul id="chatList" class="w-full mx-auto grid grid-cols-1">
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
-            <li
-                class="grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
-                <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
-                    alt="" class="ml-4 w-[50px] aspect-square rounded-full">
-                <p class='text-xl max-sm:ml-[-30%]'>hello</p>
-            </li>
+
+        <div role="status" class="p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
+        <div class="flex items-center justify-between">
+            <div>
+                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+            </div>
+            <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+        </div>
+        <div class="flex items-center justify-between pt-4">
+            <div>
+                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+            </div>
+            <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+        </div>
+        <div class="flex items-center justify-between pt-4">
+            <div>
+                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+            </div>
+            <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+        </div>
+        <div class="flex items-center justify-between pt-4">
+            <div>
+                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+            </div>
+            <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+        </div>
+        <div class="flex items-center justify-between pt-4">
+            <div>
+                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+            </div>
+            <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+        </div>
+        <div class="flex items-center justify-between pt-4">
+        <div>
+            <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+            <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+        </div>
+        <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+    </div>
+    <div class="flex items-center justify-between pt-4">
+    <div>
+        <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+    </div>
+    <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+</div>
+<div class="flex items-center justify-between pt-4">
+<div>
+    <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+    <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+</div>
+<div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+</div>
+<div class="flex items-center justify-between pt-4">
+<div>
+    <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+    <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+</div>
+<div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+</div>
+<div class="flex items-center justify-between pt-4">
+<div>
+    <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+    <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+</div>
+<div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+</div>
+<div class="flex items-center justify-between pt-4">
+<div>
+    <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+    <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+</div>
+<div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+</div>
+        <span class="sr-only">Loading...</span>
+    </div>
+    
         </ul>
     </div>
 
@@ -128,132 +114,7 @@ export const MainChat =
         </nav>
 
         <ul class="innerChat mt-[350px] lg:mb-[140px] md:mb-[140px] sm:mb-[140px] max-sm:mb-[180px]">
-            <li class="mr-[40%] flex grid-cols-2 justify-center items-center">
-                <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-                <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
-                    <p>
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaahjgjbjbjbjbjbjjjjbjbjbjjbjaaaaaaaaaaaaaaaaaa
-                    </p>
-                </div>
-            </li>
-            <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-                <div class="rounded-xl p-5 bg-white break-all my-2">
-                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalativeaaaa</p>
-                </div>
-                <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
-            </li>
-            <li class="mr-[40%] flex grid-cols-2 justify-center items-center">
-                <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-                <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
-                    <p>
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaahjgjbjbjbjbjbjjjjbjbjbjjbjaaaaaaaaaaaaaaaaaa
-                    </p>
-                </div>
-            </li>
-            <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-                <div class="rounded-xl p-5 bg-white break-all my-2">
-                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalativeaaaa</p>
-                </div>
-                <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
-            </li>
-            <li class="mr-[40%] flex grid-cols-2 justify-center items-center">
-                <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-                <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
-                    <p>
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaahjgjbjbjbjbjbjjjjbjbjbjjbjaaaaaaaaaaaaaaaaaa
-                    </p>
-                </div>
-            </li>
-            <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-                <div class="rounded-xl p-5 bg-white break-all my-2">
-                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalativeaaaa</p>
-                </div>
-                <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
-            </li>
-            <li class="mr-[40%] flex grid-cols-2 justify-center items-center">
-            <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-            <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
-                <p>
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaahjgjbjbjbjbjbjjjjbjbjbjjbjaaaaaaaaaaaaaaaaaa
-                </p>
-            </div>
-        </li>
-        <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-            <div class="rounded-xl p-5 bg-white break-all my-2">
-                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalativeaaaa</p>
-            </div>
-            <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
-        </li>
-        <li class="mr-[40%] flex grid-cols-2 justify-center items-center">
-            <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-            <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
-                <p>
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaahjgjbjbjbjbjbjjjjbjbjbjjbjaaaaaaaaaaaaaaaaaa
-                </p>
-            </div>
-        </li>
-        <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-            <div class="rounded-xl p-5 bg-white break-all my-2">
-                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalativeaaaa</p>
-            </div>
-            <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
-        </li>
-        <li class="mr-[40%] flex grid-cols-2 justify-center items-center">
-            <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-            <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
-                <p>
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaahjgjbjbjbjbjbjjjjbjbjbjjbjaaaaaaaaaaaaaaaaaa
-                </p>
-            </div>
-        </li>
-        <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-            <div class="rounded-xl p-5 bg-white break-all my-2">
-                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalativeaaaa</p>
-            </div>
-            <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
-        </li>
-        <li class="mr-[40%] flex grid-cols-2 justify-center items-center">
-        <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-        <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
-            <p>
-                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaahjgjbjbjbjbjbjjjjbjbjbjjbjaaaaaaaaaaaaaaaaaa
-            </p>
-        </div>
-    </li>
-    <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-        <div class="rounded-xl p-5 bg-white break-all my-2">
-            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalativeaaaa</p>
-        </div>
-        <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
-    </li>
-    <li class="mr-[40%] flex grid-cols-2 justify-center items-center">
-        <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-        <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
-            <p>
-                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaahjgjbjbjbjbjbjjjjbjbjbjjbjaaaaaaaaaaaaaaaaaa
-            </p>
-        </div>
-    </li>
-    <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-        <div class="rounded-xl p-5 bg-white break-all my-2">
-            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalativeaaaa</p>
-        </div>
-        <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
-    </li>
-    <li class="mr-[40%] flex grid-cols-2 justify-center items-center">
-        <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-        <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
-            <p>
-                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaahjgjbjbjbjbjbjjjjbjbjbjjbjaaaaaaaaaaaaaaaaaa
-            </p>
-        </div>
-    </li>
-    <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-        <div class="rounded-xl p-5 bg-white break-all my-2">
-            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalativeaaaa</p>
-        </div>
-        <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
-    </li>
+        
         </ul>
 
         <nav
