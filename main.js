@@ -173,19 +173,19 @@ const listItemClicked = async (event) => {
             `
                ${chat?.author == loggedInUser?.email ?
               `
-                  <li id="${chat?.uid}" class="messageItem mr-[40%] flex grid-cols-2 justify-center items-center">
+                  <li id="${chat?.uid}" class="messageItem mr-[30%] flex grid-cols-2 justify-center items-center">
                   <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-                  <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
+                  <div class="rounded-xl p-5 bg-cyan-500 my-2">
                       <p>
                           ${chat?.content}
                       </p>
                   </div>
-                  <button class="text-center w-[50px] h-[50px] mr-5 rounded-full"><i class="fa fa-trash"></i></button>
+                  <button class="text-center w-[25px] h-[25px] bg-cyan-600 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
                  </li>
                   ` :
               `
-                  <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-                  <div class="rounded-xl p-5 bg-white break-all my-2">
+                  <li class="ml-[30%] flex grid-cols-2 justify-center items-center">
+                  <div class="rounded-xl p-5 bg-white my-2">
                       <p>${chat?.content}</p>
                   </div>
                   <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
@@ -301,19 +301,19 @@ const listItemClicked = async (event) => {
               `
                  ${chat?.author == loggedInUser?.email ?
                 `
-                    <li id="${chat?.uid}" class="messageItem mr-[40%] flex grid-cols-2 justify-center items-center">
+                    <li id="${chat?.uid}" class="messageItem mr-[30%] flex grid-cols-2 justify-center items-center">
                     <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-                    <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
+                    <div class="rounded-xl p-5 bg-cyan-500 my-2">
                         <p>
                             ${chat?.content}
                         </p>
                     </div>
-                    <button class="text-center w-[50px] h-[50px] mr-5 rounded-full"><i class="fa fa-trash"></i></button>
+                    <button class="text-center w-[25px] h-[25px] bg-cyan-600 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
                    </li>
                     ` :
                 `
-                    <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-                    <div class="rounded-xl p-5 bg-white break-all my-2">
+                    <li class="ml-[30%] flex grid-cols-2 justify-center items-center">
+                    <div class="rounded-xl p-5 bg-white my-2">
                         <p>${chat?.content}</p>
                     </div>
                     <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
@@ -457,19 +457,19 @@ const listItemClicked = async (event) => {
                   `
                      ${chat?.author == loggedInUser?.email ?
                     `
-                        <li id="${chat?.uid}" class="messageItem mr-[40%] flex grid-cols-2 justify-center items-center">
+                        <li id="${chat?.uid}" class="messageItem mr-[30%] flex grid-cols-2 justify-center items-center">
                         <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-                        <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
+                        <div class="rounded-xl p-5 bg-cyan-500 my-2">
                             <p>
                                 ${chat?.content}
                             </p>
                         </div>
-                        <button class="text-center w-[50px] h-[50px] mr-5 rounded-full"><i class="fa fa-trash"></i></button>
+                        <button class="text-center w-[25px] h-[25px] bg-cyan-600 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
                        </li>
                         ` :
                     `
-                        <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-                        <div class="rounded-xl p-5 bg-white break-all my-2">
+                        <li class="ml-[30%] flex grid-cols-2 justify-center items-center">
+                        <div class="rounded-xl p-5 bg-white my-2">
                             <p>${chat?.content}</p>
                         </div>
                         <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
@@ -660,19 +660,19 @@ const listItemClicked = async (event) => {
             `
                ${chat?.author == loggedInUser?.email ?
               `
-                  <li id="${chat?.uid}" class="messageItem mr-[40%] flex grid-cols-2 justify-center items-center">
+                  <li id="${chat?.uid}" class="messageItem mr-[30%] flex grid-cols-2 justify-center items-center">
                   <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-                  <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
+                  <div class="rounded-xl p-5 bg-cyan-500 my-2">
                       <p>
                           ${chat?.content}
                       </p>
                   </div>
-                  <button class="text-center w-[50px] h-[50px] mr-5 rounded-full"><i class="fa fa-trash"></i></button>
+                  <button class="text-center w-[25px] h-[25px] bg-cyan-600 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
                  </li>
                   ` :
               `
-                  <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-                  <div class="rounded-xl p-5 bg-white break-all my-2">
+                  <li class="ml-[30%] flex grid-cols-2 justify-center items-center">
+                  <div class="rounded-xl p-5 bg-white my-2">
                       <p>${chat?.content}</p>
                   </div>
                   <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
@@ -732,19 +732,19 @@ const listItemClicked = async (event) => {
         `
            ${chat?.author == loggedInUser?.email ?
           `
-              <li id="${chat?.uid}" class="messageItem mr-[40%] flex grid-cols-2 justify-center items-center">
+              <li id="${chat?.uid}" class="messageItem mr-[30%] flex grid-cols-2 justify-center items-center">
               <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-              <div class="rounded-xl p-5 bg-cyan-500 break-all my-2">
+              <div class="rounded-xl p-5 bg-cyan-500 my-2">
                   <p>
                       ${chat?.content}
                   </p>
               </div>
-              <button class="text-center w-[50px] h-[50px] mr-5 rounded-full"><i class="fa fa-trash"></i></button>
+              <button class="text-center w-[25px] h-[25px] bg-cyan-600 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
              </li>
               ` :
           `
-              <li class="ml-[40%] flex grid-cols-2 justify-center items-center">
-              <div class="rounded-xl p-5 bg-white break-all my-2">
+              <li class="ml-[30%] flex grid-cols-2 justify-center items-center">
+              <div class="rounded-xl p-5 bg-white my-2">
                   <p>${chat?.content}</p>
               </div>
               <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
