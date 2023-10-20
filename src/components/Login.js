@@ -1,7 +1,7 @@
 export const Login =
 `
 <div class="fixed top-0 left-0 w-full">
-<nav class="bg-blue-500 dark:bg-gray-800 dark:text-gray-100 mx-auto text-white p-6 border-b border-gray-400 flex grid-cols-2 justify-center items-center shadow-md shadow-gray-300">
+<nav class="bg-blue-500 dark:bg-gray-800 dark:text-gray-100 mx-auto text-white p-6 border-b border-gray-400 flex grid-cols-2 justify-center items-center shadow-md shadow-gray-300 dark:shadow-none">
 <div class="w-full">
   <p class="text-white text-xl">Amirgram</p>
 </div>

@@ -9,6 +9,13 @@ if (localStorage.getItem("loggedInUser") != "") {
   document.querySelector("body").classList.remove("overflow-y-hidden");
 }
 
+
+if("theme" in localStorage) {
+  null;
+} else {
+  localStorage.setItem("theme", "light");
+}
+
 let secondPerson = {};
 
 var today = new Date();
@@ -45,37 +52,7 @@ app.insertAdjacentHTML("afterbegin", Header);
 
 
 
-if("theme" in localStorage) {
-  null;
-} else {
-  localStorage.setItem("theme", "light");
-}
 
-if(localStorage.getItem("theme") == "light") {
-  document.documentElement.classList.remove("dark");
-  document.querySelector("body").classList.remove("dark:bg-gray-700");
-  document.querySelector(".chat").style.backgroundImage = "url('https://wallpapershome.com/images/pages/pic_h/24806.jpg')"
-
-} else if(localStorage.getItem("theme") == "dark") {
-  document.documentElement.classList.add("dark");
-  document.querySelector("body").classList.add("dark:bg-gray-700");
-  document.querySelector(".chat").style.backgroundImage = "url('https://wallpapershome.com/images/pages/pic_h/15469.jpg')"
-}
-
-document.querySelector("#toggleThemeBtn").addEventListener("click", () => {
-  if(localStorage.getItem("theme") == "light") {
-    localStorage.setItem("theme", "dark");
-    document.documentElement.classList.add("dark");
-    document.querySelector("body").classList.add("dark:bg-gray-700");
-    document.querySelector(".chat").style.backgroundImage = "url('https://wallpapershome.com/images/pages/pic_h/15469.jpg')"
-
-  } else if(localStorage.getItem("theme") == "dark") {
-    localStorage.setItem("theme", "light");
-    document.documentElement.classList.remove("dark");
-    document.querySelector("body").classList.remove("dark:bg-gray-700");
-    document.querySelector(".chat").style.backgroundImage = "url('https://wallpapershome.com/images/pages/pic_h/24806.jpg')"
-  }
-})
 
 
 //Sidebar backdrop toggle
@@ -992,14 +969,89 @@ const toggleSignupLogin = () => {
   }
 }
 
-document.querySelector("#toggleSignup").addEventListener("click", toggleSignupLogin);
-document.querySelector("#toggleLogin").addEventListener("click", toggleSignupLogin);
+document.querySelector("#toggleSignup")?.addEventListener("click", toggleSignupLogin);
+document.querySelector("#toggleLogin")?.addEventListener("click", toggleSignupLogin);
 
 
 
 
 //File picker initialization
 const client = filestack.init("AWOK4L9h4SROT147VanQQz");
+
+
+
+if(localStorage.getItem("theme") == "light") {
+  document.documentElement.classList.remove("dark");
+  document.querySelector("body").classList.remove("dark:bg-gray-700");
+  if(document.querySelector(".chat")){
+    document.querySelector(".chat").style.backgroundImage = "url('https://wallpapershome.com/images/pages/pic_h/24806.jpg')"
+  }
+
+} else if(localStorage.getItem("theme") == "dark") {
+  document.documentElement.classList.add("dark");
+  document.querySelector("body").classList.add("dark:bg-gray-700");
+  if(document.querySelector(".chat")) {
+    document.querySelector(".chat").style.backgroundImage = "url('https://wallpapershome.com/images/pages/pic_h/15469.jpg')"
+  }
+}
+
+document.querySelector("#toggleThemeBtn").addEventListener("click", () => {
+  if(localStorage.getItem("theme") == "light") {
+    localStorage.setItem("theme", "dark");
+    document.documentElement.classList.add("dark");
+    document.querySelector("body").classList.add("dark:bg-gray-700");
+    
+    if(document.querySelector(".chat")) {
+      document.querySelector(".chat").style.backgroundImage = "url('https://wallpapershome.com/images/pages/pic_h/15469.jpg')"
+    }
+
+  } else if(localStorage.getItem("theme") == "dark") {
+    localStorage.setItem("theme", "light");
+    document.documentElement.classList.remove("dark");
+    document.querySelector("body").classList.remove("dark:bg-gray-700");
+
+    if(document.querySelector(".chat")){
+      document.querySelector(".chat").style.backgroundImage = "url('https://wallpapershome.com/images/pages/pic_h/24806.jpg')"
+    }
+    
+  }
+})
+
+
+
+
+if(localStorage.getItem("loggedInUser") == "") {
+  //Login system
+let loginEmailEl = document.querySelector("#loginEmail");
+let loginPasswordEl = document.querySelector("#loginPassword");
+
+let loginEmail = "";
+let loginPassword = "";
+
+loginEmailEl.addEventListener("change", (event) => {
+  loginEmail = event.target.value;
+})
+loginPasswordEl.addEventListener("change", (event) => {
+  loginPassword = event.target.value;
+})
+
+document.querySelector("#login").addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  let foundUser = users.filter((user) => {
+    if (user.email == loginEmail && user.password == loginPassword) {
+      return user;
+    } else {
+      null;
+    }
+  })
+
+  localStorage.setItem("loggedInUser", foundUser[0].uid);
+  console.log("Login Successfully Done");
+  setTimeout(() => window.location.href = "", 1000);
+})
+
+
 
 
 
@@ -1100,32 +1152,5 @@ document.querySelector("#signup").addEventListener("submit", async (event) => {
 
 
 
-//Login system
-let loginEmailEl = document.querySelector("#loginEmail");
-let loginPasswordEl = document.querySelector("#loginPassword");
 
-let loginEmail = "";
-let loginPassword = "";
-
-loginEmailEl.addEventListener("change", (event) => {
-  loginEmail = event.target.value;
-})
-loginPasswordEl.addEventListener("change", (event) => {
-  loginPassword = event.target.value;
-})
-
-document.querySelector("#login").addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  let foundUser = users.filter((user) => {
-    if (user.email == loginEmail && user.password == loginPassword) {
-      return user;
-    } else {
-      null;
-    }
-  })
-
-  localStorage.setItem("loggedInUser", foundUser[0].uid);
-  console.log("Login Successfully Done");
-  setTimeout(() => window.location.href = "", 1000);
-})
+}
