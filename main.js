@@ -239,7 +239,7 @@ const listItemClicked = async (event) => {
                 <input type="text" id="messageInput"
                     class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                     placeholder="Type your message" />
-                <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
+                <button id="sendBtn" class="w-[50px] aspect-square text-xl">
                     <i class="fa fa-send"></i>
                 </button>
             </div>
@@ -367,7 +367,7 @@ const listItemClicked = async (event) => {
                   <input type="text" id="messageInput"
                       class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       placeholder="Type your message" />
-                  <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
+                  <button id="sendBtn" class="w-[50px] aspect-square text-xl">
                       <i class="fa fa-send"></i>
                   </button>
               </div>
@@ -523,7 +523,7 @@ const listItemClicked = async (event) => {
                       <input type="text" id="messageInput"
                           class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                           placeholder="Type your message" />
-                      <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
+                      <button id="sendBtn" class="w-[50px] aspect-square text-xl">
                           <i class="fa fa-send"></i>
                       </button>
                   </div>
@@ -726,7 +726,7 @@ const listItemClicked = async (event) => {
                 <input type="text" id="messageInput"
                     class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                     placeholder="Type your message" />
-                <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
+                <button id="sendBtn" class="w-[50px] aspect-square text-xl">
                     <i class="fa fa-send"></i>
                 </button>
             </div>
@@ -798,7 +798,7 @@ const listItemClicked = async (event) => {
             <input type="text" id="messageInput"
                 class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="Type your message" />
-            <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
+            <button id="sendBtn" class="w-[50px] aspect-square text-xl">
                 <i class="fa fa-send"></i>
             </button>
         </div>
