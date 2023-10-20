@@ -15,7 +15,7 @@ export const Header = `
 <header>
     <div class="fixed top-0 left-0 w-full grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1 ">
         <nav
-        class="bg-blue-500 text-white p-3 border-b border-gray-400 flex grid-cols-2 justify-center items-center shadow-md shadow-gray-300 lg:col-span-1 md:col-span-1 sm:col-span-1 max-sm:w-full">
+        class="bg-blue-500 dark:bg-gray-800 text-white p-3 border-b border-gray-400 flex grid-cols-2 justify-center items-center shadow-md shadow-gray-300 dark:shadow-none dark:border-gray-700 lg:col-span-1 md:col-span-1 sm:col-span-1 max-sm:w-full">
         <button id="sidebarToggleBtn" class="w-[50px] aspect-square text-xl">
             <i class="fa fa-bars"></i>
         </button>
@@ -32,16 +32,19 @@ export const Header = `
 
 
     <div class="backdrop hidden fixed top-0 left-0 z-50 w-full h-screen backdrop-blur-md">
-        <div id="sidebar" class="fixed top-0 left-0 w-[300px] h-screen bg-gray-200 border-r border-gray-400">
-            <div class="border-b border-gray-400">
+        <div id="sidebar" class="fixed top-0 left-0 w-[300px] h-screen bg-gray-200 border-r border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-100">
+            <div class="">
                 <img src="${loggedInUser?.avatar}" alt=""
                     class="mx-auto text-center w-[50px] aspect-square rounded-full mt-5">
                 <p class="text-center my-2">${loggedInUser?.username}</p>
                 <p class="text-center my-2 text-sm">${loggedInUser?.email}</p>
             </div>
             <ul class="w-full">
-                <li id="logout" class="p-3 text-center border-b border-t border-gray-400 cursor-pointer">
-                    Log Out <i class="fa fa-logout-o"></i>
+            <li id="toggleThemeBtn" class="p-3 text-center cursor-pointer duration-200 hover:bg-gray-300 dark:hover:bg-gray-600">
+            <i class="fa fa-adjust relative right-6"></i> Change Theme 
+        </li>
+                <li id="logout" class="p-3 text-center cursor-pointer duration-200 hover:bg-gray-300 dark:hover:bg-gray-600">
+                    <i class="fa fa-sign-out relative right-12"></i> Log Out 
                 </li>
             </ul>
         </div>

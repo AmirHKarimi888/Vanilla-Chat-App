@@ -43,6 +43,41 @@ const app = document.querySelector("#app");
 app.insertAdjacentHTML("afterbegin", Body);
 app.insertAdjacentHTML("afterbegin", Header);
 
+
+
+if("theme" in localStorage) {
+  null;
+} else {
+  localStorage.setItem("theme", "light");
+}
+
+if(localStorage.getItem("theme") == "light") {
+  document.documentElement.classList.remove("dark");
+  document.querySelector("body").classList.remove("dark:bg-gray-700");
+  document.querySelector(".chat").style.backgroundImage = "url('https://wallpapershome.com/images/pages/pic_h/24806.jpg')"
+
+} else if(localStorage.getItem("theme") == "dark") {
+  document.documentElement.classList.add("dark");
+  document.querySelector("body").classList.add("dark:bg-gray-700");
+  document.querySelector(".chat").style.backgroundImage = "url('https://wallpapershome.com/images/pages/pic_h/15469.jpg')"
+}
+
+document.querySelector("#toggleThemeBtn").addEventListener("click", () => {
+  if(localStorage.getItem("theme") == "light") {
+    localStorage.setItem("theme", "dark");
+    document.documentElement.classList.add("dark");
+    document.querySelector("body").classList.add("dark:bg-gray-700");
+    document.querySelector(".chat").style.backgroundImage = "url('https://wallpapershome.com/images/pages/pic_h/15469.jpg')"
+
+  } else if(localStorage.getItem("theme") == "dark") {
+    localStorage.setItem("theme", "light");
+    document.documentElement.classList.remove("dark");
+    document.querySelector("body").classList.remove("dark:bg-gray-700");
+    document.querySelector(".chat").style.backgroundImage = "url('https://wallpapershome.com/images/pages/pic_h/24806.jpg')"
+  }
+})
+
+
 //Sidebar backdrop toggle
 const toggleBackdrop = () => {
   const backdrop = document.querySelector(".backdrop");
@@ -99,7 +134,7 @@ ${loggedInUser?.contacts.map((user) => {
   return (
     `
         <li id="${user?.email}"
-          class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
+          class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-300 duration-300 dark:hover:bg-gray-700 dark:border-gray-700">
           <img src="${user?.avatar}"
           alt="" class="ml-4 w-[50px] aspect-square rounded-full">
           <p class='text-xl max-sm:ml-[-30%]'>${user?.username}</p>
@@ -156,12 +191,12 @@ const listItemClicked = async (event) => {
       .then(() => {
         let chatMessages = `
         <nav
-        class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none">
+        class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 dark:bg-gray-800 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none dark:shadow-none dark:border-gray-500">
         <button id="backToContactsListBtn"
-            class="w-[50px] aspect-square text-xl rounded-full focus:border sm:hidden md:hidden lg:hidden">
+            class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
             <i class="fa fa-arrow-left"></i>
         </button>
-        <button id="chatProfile" class="w-[50px] aspect-square text-xl ml-2">
+        <button id="chatProfile" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 ml-2">
             <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
         </button>
         <p class="text-xl text-right ml-3">${secondPerson?.username}</p>
@@ -175,17 +210,17 @@ const listItemClicked = async (event) => {
               `
                   <li id="${chat?.uid}" class="messageItem mr-[30%] flex grid-cols-2 justify-center items-center">
                   <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-                  <div class="rounded-xl p-5 bg-cyan-500 my-2">
+                  <div class="rounded-xl p-5 bg-cyan-500 my-2 dark:bg-cyan-800 dark:text-gray-100">
                       <p>
                           ${chat?.content}
                       </p>
                   </div>
-                  <button class="text-center w-[25px] h-[25px] bg-cyan-600 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
+                  <button class="text-center w-[25px] h-[25px] bg-cyan-600 dark:bg-gray-700 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
                  </li>
                   ` :
               `
                   <li class="ml-[30%] flex grid-cols-2 justify-center items-center">
-                  <div class="rounded-xl p-5 bg-white my-2">
+                  <div class="rounded-xl p-5 bg-white my-2 dark:bg-gray-700 dark:text-gray-100">
                       <p>${chat?.content}</p>
                   </div>
                   <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
@@ -199,12 +234,12 @@ const listItemClicked = async (event) => {
       </ul>
   
         <nav
-            class="sending fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 p-1 border-b border-gray-400 flex justify-center items-center shadow-md shadow-gray-300">
+            class="sending fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 dark:bg-gray-800 p-1 border-b border-gray-400 dark:border-gray-700 flex justify-center items-center shadow-md shadow-gray-300">
             <div class="flex grid-cols-1 w-full justify-center">
                 <input type="text" id="messageInput"
-                    class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                    class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                     placeholder="Type your message" />
-                <button id="sendBtn" class="w-[50px] aspect-square text-xl">
+                <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
                     <i class="fa fa-send"></i>
                 </button>
             </div>
@@ -284,12 +319,12 @@ const listItemClicked = async (event) => {
         .then(() => {
           let chatMessages = `
           <nav
-          class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none">
+          class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 dark:bg-gray-800 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none dark:shadow-none dark:border-gray-500">
           <button id="backToContactsListBtn"
-              class="w-[50px] aspect-square text-xl rounded-full focus:border sm:hidden md:hidden lg:hidden">
+              class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
               <i class="fa fa-arrow-left"></i>
           </button>
-          <button id="chatProfile" class="w-[50px] aspect-square text-xl ml-2">
+          <button id="chatProfile" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 ml-2">
               <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
           </button>
           <p class="text-xl text-right ml-3">${secondPerson?.username}</p>
@@ -303,17 +338,17 @@ const listItemClicked = async (event) => {
                 `
                     <li id="${chat?.uid}" class="messageItem mr-[30%] flex grid-cols-2 justify-center items-center">
                     <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-                    <div class="rounded-xl p-5 bg-cyan-500 my-2">
+                    <div class="rounded-xl p-5 bg-cyan-500 my-2 dark:bg-cyan-800 dark:text-gray-100">
                         <p>
                             ${chat?.content}
                         </p>
                     </div>
-                    <button class="text-center w-[25px] h-[25px] bg-cyan-600 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
+                    <button class="text-center w-[25px] h-[25px] bg-cyan-600 dark:bg-gray-700 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
                    </li>
                     ` :
                 `
                     <li class="ml-[30%] flex grid-cols-2 justify-center items-center">
-                    <div class="rounded-xl p-5 bg-white my-2">
+                    <div class="rounded-xl p-5 bg-white my-2 dark:bg-gray-700 dark:text-gray-100">
                         <p>${chat?.content}</p>
                     </div>
                     <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
@@ -327,12 +362,12 @@ const listItemClicked = async (event) => {
         </ul>
     
           <nav
-              class="sending fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 p-1 border-b border-gray-400 flex justify-center items-center shadow-md shadow-gray-300">
+              class="sending fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 dark:bg-gray-800 p-1 border-b border-gray-400 dark:border-gray-700 flex justify-center items-center shadow-md shadow-gray-300">
               <div class="flex grid-cols-1 w-full justify-center">
                   <input type="text" id="messageInput"
-                      class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                      class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       placeholder="Type your message" />
-                  <button id="sendBtn" class="w-[50px] aspect-square text-xl">
+                  <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
                       <i class="fa fa-send"></i>
                   </button>
               </div>
@@ -440,12 +475,12 @@ const listItemClicked = async (event) => {
 
               let chatMessages = `
               <nav
-              class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none">
+              class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 dark:bg-gray-800 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none dark:shadow-none dark:border-gray-500">
               <button id="backToContactsListBtn"
-                  class="w-[50px] aspect-square text-xl rounded-full focus:border sm:hidden md:hidden lg:hidden">
+                  class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
                   <i class="fa fa-arrow-left"></i>
               </button>
-              <button id="chatProfile" class="w-[50px] aspect-square text-xl ml-2">
+              <button id="chatProfile" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 ml-2">
                   <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
               </button>
               <p class="text-xl text-right ml-3">${secondPerson?.username}</p>
@@ -459,17 +494,17 @@ const listItemClicked = async (event) => {
                     `
                         <li id="${chat?.uid}" class="messageItem mr-[30%] flex grid-cols-2 justify-center items-center">
                         <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-                        <div class="rounded-xl p-5 bg-cyan-500 my-2">
+                        <div class="rounded-xl p-5 bg-cyan-500 my-2 dark:bg-cyan-800 dark:text-gray-100">
                             <p>
                                 ${chat?.content}
                             </p>
                         </div>
-                        <button class="text-center w-[25px] h-[25px] bg-cyan-600 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
+                        <button class="text-center w-[25px] h-[25px] bg-cyan-600 dark:bg-gray-700 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
                        </li>
                         ` :
                     `
                         <li class="ml-[30%] flex grid-cols-2 justify-center items-center">
-                        <div class="rounded-xl p-5 bg-white my-2">
+                        <div class="rounded-xl p-5 bg-white my-2 dark:bg-gray-700 dark:text-gray-100">
                             <p>${chat?.content}</p>
                         </div>
                         <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
@@ -483,12 +518,12 @@ const listItemClicked = async (event) => {
             </ul>
         
               <nav
-                  class="sending fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 p-1 border-b border-gray-400 flex justify-center items-center shadow-md shadow-gray-300">
+                  class="sending fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 dark:bg-gray-800 p-1 border-b border-gray-400 dark:border-gray-700 flex justify-center items-center shadow-md shadow-gray-300">
                   <div class="flex grid-cols-1 w-full justify-center">
                       <input type="text" id="messageInput"
-                          class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                          class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                           placeholder="Type your message" />
-                      <button id="sendBtn" class="w-[50px] aspect-square text-xl">
+                      <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
                           <i class="fa fa-send"></i>
                       </button>
                   </div>
@@ -643,12 +678,12 @@ const listItemClicked = async (event) => {
       .then(() => {
         let chatMessages = `
         <nav
-        class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none">
+        class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 dark:bg-gray-800 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none dark:shadow-none dark:border-gray-500">
         <button id="backToContactsListBtn"
-            class="w-[50px] aspect-square text-xl rounded-full focus:border sm:hidden md:hidden lg:hidden">
+            class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
             <i class="fa fa-arrow-left"></i>
         </button>
-        <button id="chatProfile" class="w-[50px] aspect-square text-xl ml-2">
+        <button id="chatProfile" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 ml-2">
             <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
         </button>
         <p class="text-xl text-right ml-3">${secondPerson?.username}</p>
@@ -662,17 +697,17 @@ const listItemClicked = async (event) => {
               `
                   <li id="${chat?.uid}" class="messageItem mr-[30%] flex grid-cols-2 justify-center items-center">
                   <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-                  <div class="rounded-xl p-5 bg-cyan-500 my-2">
+                  <div class="rounded-xl p-5 bg-cyan-500 my-2 dark:bg-cyan-800 dark:text-gray-100">
                       <p>
                           ${chat?.content}
                       </p>
                   </div>
-                  <button class="text-center w-[25px] h-[25px] bg-cyan-600 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
+                  <button class="text-center w-[25px] h-[25px] bg-cyan-600 dark:bg-gray-700 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
                  </li>
                   ` :
               `
                   <li class="ml-[30%] flex grid-cols-2 justify-center items-center">
-                  <div class="rounded-xl p-5 bg-white my-2">
+                  <div class="rounded-xl p-5 bg-white my-2 dark:bg-gray-700 dark:text-gray-100">
                       <p>${chat?.content}</p>
                   </div>
                   <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
@@ -686,12 +721,12 @@ const listItemClicked = async (event) => {
       </ul>
   
         <nav
-            class="sending fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 p-1 border-b border-gray-400 flex justify-center items-center shadow-md shadow-gray-300">
+            class="sending fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 dark:bg-gray-800 p-1 border-b border-gray-400 dark:border-gray-700 flex justify-center items-center shadow-md shadow-gray-300">
             <div class="flex grid-cols-1 w-full justify-center">
                 <input type="text" id="messageInput"
-                    class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                    class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                     placeholder="Type your message" />
-                <button id="sendBtn" class="w-[50px] aspect-square text-xl">
+                <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
                     <i class="fa fa-send"></i>
                 </button>
             </div>
@@ -715,12 +750,12 @@ const listItemClicked = async (event) => {
 
     let chatMessages = `
     <nav
-    class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none">
+    class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 dark:bg-gray-800 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none dark:shadow-none dark:border-gray-500">
     <button id="backToContactsListBtn"
-        class="w-[50px] aspect-square text-xl rounded-full focus:border sm:hidden md:hidden lg:hidden">
+        class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
         <i class="fa fa-arrow-left"></i>
     </button>
-    <button id="chatProfile" class="w-[50px] aspect-square text-xl ml-2">
+    <button id="chatProfile" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 ml-2">
         <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
     </button>
     <p class="text-xl text-right ml-3">${secondPerson?.username}</p>
@@ -734,17 +769,17 @@ const listItemClicked = async (event) => {
           `
               <li id="${chat?.uid}" class="messageItem mr-[30%] flex grid-cols-2 justify-center items-center">
               <img src="${loggedInUser?.avatar}" alt="" class="text-center w-[50px] h-[50px] mr-5 rounded-full" />
-              <div class="rounded-xl p-5 bg-cyan-500 my-2">
+              <div class="rounded-xl p-5 bg-cyan-500 my-2 dark:bg-cyan-800 dark:text-gray-100">
                   <p>
                       ${chat?.content}
                   </p>
               </div>
-              <button class="text-center w-[25px] h-[25px] bg-cyan-600 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
+              <button class="text-center w-[25px] h-[25px] bg-cyan-600 dark:bg-gray-700 text-gray-200 ml-2 rounded-full"><i class="fa fa-trash"></i></button>
              </li>
               ` :
           `
               <li class="ml-[30%] flex grid-cols-2 justify-center items-center">
-              <div class="rounded-xl p-5 bg-white my-2">
+              <div class="rounded-xl p-5 bg-white my-2 dark:bg-gray-700 dark:text-gray-100">
                   <p>${chat?.content}</p>
               </div>
               <img src="${secondPerson?.avatar}" alt="" class="text-center w-[50px] h-[50px] ml-5 rounded-full" />
@@ -758,12 +793,12 @@ const listItemClicked = async (event) => {
   </ul>
 
     <nav
-        class="sending fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 p-1 border-b border-gray-400 flex justify-center items-center shadow-md shadow-gray-300">
+        class="sending fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 dark:bg-gray-800 p-1 border-b border-gray-400 dark:border-gray-700 flex justify-center items-center shadow-md shadow-gray-300">
         <div class="flex grid-cols-1 w-full justify-center">
             <input type="text" id="messageInput"
-                class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="Type your message" />
-            <button id="sendBtn" class="w-[50px] aspect-square text-xl">
+            <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
                 <i class="fa fa-send"></i>
             </button>
         </div>
@@ -835,7 +870,7 @@ ${loggedInUser?.contacts.map((user) => {
       return (
         `
         <li id="${user?.email}"
-          class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
+          class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-300 duration-300 dark:hover:bg-gray-700 dark:border-gray-700">
           <img src="${user?.avatar}"
           alt="" class="ml-4 w-[50px] aspect-square rounded-full">
           <p class='text-xl max-sm:ml-[-30%]'>${user?.username}</p>
@@ -871,7 +906,7 @@ ${loggedInUser?.contacts.map((user) => {
       return (
         `
         <li id="${user?.email}"
-          class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
+          class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-300 duration-300 dark:hover:bg-gray-700 dark:border-gray-700">
           <img src="${user?.avatar}"
           alt="" class="ml-4 w-[50px] aspect-square rounded-full">
           <p class='text-xl max-sm:ml-[-30%]'>${user?.username}</p>
@@ -905,7 +940,7 @@ ${loggedInUser?.contacts.map((user) => {
       return (
         `
           <li id="${user?.email}"
-            class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-100 duration-300">
+            class="userItem grid grid-cols-2 cursor-pointer justify-center items-center p-3 border-b border-gray-200 hover:bg-gray-300 duration-300 dark:hover:bg-gray-700 dark:border-gray-700">
             <img src="${user?.avatar}"
             alt="" class="ml-4 w-[50px] aspect-square rounded-full">
             <p class='text-xl max-sm:ml-[-30%]'>${user?.username}</p>

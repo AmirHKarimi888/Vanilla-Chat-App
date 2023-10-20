@@ -3,7 +3,7 @@ import { loggedInUser } from "./Header";
 export const MainChat = 
 `
 <div class="mx-auto w-full grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1">
-    <div class="chatList mt-[75px] h-screen max-sm:w-full overflow-y-scroll">
+    <div class="chatList mt-[75px] h-screen max-sm:w-full overflow-y-scroll bg-gray-100 dark:bg-gray-800 dark:text-gray-100">
         <ul id="chatList" class="w-full mx-auto grid grid-cols-1">
 
         <div role="status" class="p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
@@ -95,14 +95,14 @@ export const MainChat =
     background-image: url('https://wallpapershome.com/images/pages/pic_h/24806.jpg');
   ">
     <div id="chatPreview" class="items-center mt-[270px]">
-        <p class="p-2 rounded-full text-center mx-auto w-[300px] bg-cyan-300 text-sm">
+        <p class="p-2 rounded-full text-center mx-auto w-[300px] bg-cyan-300 dark:bg-gray-800 dark:text-gray-100 text-sm">
             Select A Chat To Start Messageing
         </p>
     </div>
 
     <ul id="chat" class="p-3 mx-auto lg:w-[80%] md:w-[85%] sm:w-[90%] hidden">
         <nav
-            class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none">
+            class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 dark:bg-gray-800 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none dark:shadow-none">
             <button id="backToContactsListBtn"
                 class="w-[50px] aspect-square text-xl rounded-full focus:border sm:hidden md:hidden lg:hidden">
                 <i class="fa fa-arrow-left"></i>
