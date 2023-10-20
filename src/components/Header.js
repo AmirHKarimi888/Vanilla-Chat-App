@@ -47,6 +47,12 @@ export const Header = `
                     <i class="fa fa-sign-out relative right-12"></i> Log Out 
                 </li>
             </ul>
+
+            <div class="about grid justify-center items-center">
+              <a href="https://amirhk888.iran.liara.run/about" class="p-2 bg-blue-600 text-white dark:bg-gray-800 rounded-lg mt-[30px] cursor-pointer">
+                About Me
+              </a>
+            </div>
         </div>
     </div>
 </header>

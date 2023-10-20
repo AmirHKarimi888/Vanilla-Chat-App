@@ -94,7 +94,7 @@ export const MainChat =
     style="
     background-image: url('https://wallpapershome.com/images/pages/pic_h/24806.jpg');
   ">
-    <div id="chatPreview" class="items-center mt-[270px]">
+    <div id="chatPreview" class="items-center mt-[30%]">
         <p class="p-2 rounded-full text-center mx-auto w-[300px] bg-cyan-300 dark:bg-gray-800 dark:text-gray-100 text-sm">
             Select A Chat To Start Messageing
         </p>
