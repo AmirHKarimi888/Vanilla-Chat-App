@@ -193,7 +193,7 @@ const listItemClicked = async (event) => {
         <nav
         class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 dark:bg-gray-800 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none dark:shadow-none dark:border-gray-500">
         <button id="backToContactsListBtn"
-            class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
+            class="w-[50px] aspect-square text-xl text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
             <i class="fa fa-arrow-left"></i>
         </button>
         <button id="chatProfile" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 ml-2">
@@ -239,7 +239,7 @@ const listItemClicked = async (event) => {
                 <input type="text" id="messageInput"
                     class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                     placeholder="Type your message" />
-                <button id="sendBtn" class="w-[50px] aspect-square text-xl">
+                <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
                     <i class="fa fa-send"></i>
                 </button>
             </div>
@@ -321,7 +321,7 @@ const listItemClicked = async (event) => {
           <nav
           class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 dark:bg-gray-800 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none dark:shadow-none dark:border-gray-500">
           <button id="backToContactsListBtn"
-              class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
+              class="w-[50px] aspect-square text-xl text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
               <i class="fa fa-arrow-left"></i>
           </button>
           <button id="chatProfile" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 ml-2">
@@ -367,7 +367,7 @@ const listItemClicked = async (event) => {
                   <input type="text" id="messageInput"
                       class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       placeholder="Type your message" />
-                  <button id="sendBtn" class="w-[50px] aspect-square text-xl">
+                  <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
                       <i class="fa fa-send"></i>
                   </button>
               </div>
@@ -477,7 +477,7 @@ const listItemClicked = async (event) => {
               <nav
               class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 dark:bg-gray-800 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none dark:shadow-none dark:border-gray-500">
               <button id="backToContactsListBtn"
-                  class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
+                  class="w-[50px] aspect-square text-xl text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
                   <i class="fa fa-arrow-left"></i>
               </button>
               <button id="chatProfile" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 ml-2">
@@ -523,7 +523,7 @@ const listItemClicked = async (event) => {
                       <input type="text" id="messageInput"
                           class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                           placeholder="Type your message" />
-                      <button id="sendBtn" class="w-[50px] aspect-square text-xl">
+                      <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
                           <i class="fa fa-send"></i>
                       </button>
                   </div>
@@ -680,7 +680,7 @@ const listItemClicked = async (event) => {
         <nav
         class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 dark:bg-gray-800 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none dark:shadow-none dark:border-gray-500">
         <button id="backToContactsListBtn"
-            class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
+            class="w-[50px] aspect-square text-xl text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
             <i class="fa fa-arrow-left"></i>
         </button>
         <button id="chatProfile" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 ml-2">
@@ -726,7 +726,7 @@ const listItemClicked = async (event) => {
                 <input type="text" id="messageInput"
                     class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                     placeholder="Type your message" />
-                <button id="sendBtn" class="w-[50px] aspect-square text-xl">
+                <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
                     <i class="fa fa-send"></i>
                 </button>
             </div>
@@ -752,7 +752,7 @@ const listItemClicked = async (event) => {
     <nav
     class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 dark:bg-gray-800 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none dark:shadow-none dark:border-gray-500">
     <button id="backToContactsListBtn"
-        class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
+        class="w-[50px] aspect-square text-xl text-gray-100 rounded-full focus:border sm:hidden md:hidden lg:hidden">
         <i class="fa fa-arrow-left"></i>
     </button>
     <button id="chatProfile" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100 ml-2">
@@ -798,7 +798,7 @@ const listItemClicked = async (event) => {
             <input type="text" id="messageInput"
                 class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="Type your message" />
-            <button id="sendBtn" class="w-[50px] aspect-square text-xl">
+            <button id="sendBtn" class="w-[50px] aspect-square text-xl text-gray-600 dark:text-gray-100">
                 <i class="fa fa-send"></i>
             </button>
         </div>
