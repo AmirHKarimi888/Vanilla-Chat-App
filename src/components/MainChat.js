@@ -100,7 +100,7 @@ export const MainChat =
         </p>
     </div>
 
-    <ul id="chat" class="p-3 mx-auto mt-[-270px] lg:w-[80%] md:w-[85%] sm:w-[90%] hidden">
+    <ul id="chat" class="p-3 mx-auto lg:w-[80%] md:w-[85%] sm:w-[90%] hidden">
         <nav
             class="fixed top-0 right-0 max-sm:mt-[0px] z-40 lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-blue-500 text-white p-3 border-b border-gray-400 flex justify-left items-center shadow-md shadow-gray-300 max-sm:shadow-none">
             <button id="backToContactsListBtn"
@@ -118,7 +118,7 @@ export const MainChat =
         </ul>
 
         <nav
-            class="fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 p-1 border-b border-gray-400 flex justify-center items-center shadow-md shadow-gray-300">
+            class="sending fixed bottom-0 right-0 mt-[75px] lg:w-[75%] md:w-[66.67%] sm:w-[50%] max-sm:w-[100%] bg-gray-100 p-1 border-b border-gray-400 flex justify-center items-center shadow-md shadow-gray-300">
             <div class="flex grid-cols-1 w-full justify-center">
                 <input type="text" id="messageInput"
                     class="shadow-sm break-before-all bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[72%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
